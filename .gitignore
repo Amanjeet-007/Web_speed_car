@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-pybackend
-*.zip
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

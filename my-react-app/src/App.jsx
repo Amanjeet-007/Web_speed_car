@@ -1,67 +1,20 @@
+import Navbar from "./components/Navbar";
 import BookingForm from "./components/Form";
 import ProductsSection from "./components/Products";
+import Footer from "./components/Footer";
+import EnquiryWidget from "./components/EnquiryWidget";
+import HeroRotatingText from "./components/RotatingText";
+import HeroSlider from "./components/HeroSlider";
 
 export default function SpeedCarWashLanding() {
   return (
     <div className="font-sans bg-gray-50 text-gray-800 antialiased">
-      <header className="bg-white border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl font-black tracking-tighter text-blue-900">
-              SPEED <span className="text-red-600">CAR WASH</span>
-            </span>
-          </div>
-          <nav className="hidden md:flex space-x-6 text-sm font-semibold text-gray-600">
-            <a href="#home" className="hover:text-blue-600">
-              HOME
-            </a>
-            <a href="#about" className="hover:text-blue-600">
-              ABOUT US
-            </a>
-            <a href="#services" className="hover:text-blue-600">
-              SERVICES
-            </a>
-            <a href="#franchise" className="hover:text-blue-600">
-              FRANCHISE
-            </a>
-            <a href="#products" className="hover:text-blue-600">
-              PRODUCTS
-            </a>
-            <a href="#contact" className="hover:text-blue-600">
-              CONTACT US
-            </a>
-          </nav>
-          <div className="flex items-center space-x-3">
-            <button className="bg-blue-600 text-white px-4 py-2 text-xs font-bold rounded shadow hover:bg-blue-700">
-              LOGIN
-            </button>
-            <button className="bg-red-600 text-white px-4 py-2 text-xs font-bold rounded shadow hover:bg-red-700">
-              BOOK A WASH
-            </button>
-          </div>
-        </div>
-      </header>
-
+      <Navbar/>
+      <EnquiryWidget />
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-600 text-white overflow-hidden py-16">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              Automatic Car Wash
-            </h1>
-            <p className="text-lg font-medium text-blue-100">
-              Feel The Speedy Performance In Controlled Manpower!!
-            </p>
-            <button className="bg-red-600 text-white px-6 py-3 font-bold rounded shadow-lg hover:bg-red-700">
-              Book Wash Now!
-            </button>
-          </div>
-          <div className="flex justify-center">
-            <div className="bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur-md">
-              <div className="h-48 w-72 bg-blue-400/30 rounded flex items-center justify-center text-white font-bold">
-                Automatic Machine Graphic
-              </div>
-            </div>
-          </div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <HeroSlider />
         </div>
         <div className="bg-black/30 mt-12 py-3 text-center text-sm font-medium tracking-wide">
           Rome wasn't built in a day. But your car will be washed in{" "}
@@ -74,11 +27,13 @@ export default function SpeedCarWashLanding() {
       </section>
 
       <section className="py-16 max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Speed Car Wash for <span className="text-blue-600">Sparkling</span>{" "}
-          Cars in hassle free way...
-        </h2>
-        <p className="max-w-3xl mx-auto text-gray-600 text-sm md:text-base leading-relaxed mb-12">
+          
+
+    <div className="max-w-3xl mx-auto flex items-center ">
+    <HeroRotatingText/>
+
+    </div>
+        <p className="max-w-3xl mx-auto text-gray-600 text-start text-sm md:text-base leading-relaxed mb-12">
           Speed Car Wash is a brand which is literally going to change the way
           people think about car cleaning. It is a unique mechanized car
           cleaning concept where cars are getting pampered by the latest
@@ -297,33 +252,7 @@ export default function SpeedCarWashLanding() {
       </section>
       <BookingForm />
 
-      <footer className="bg-gray-900 text-gray-400 text-xs py-8 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 text-center space-y-4">
-          <div className="flex justify-center space-x-6 font-semibold text-gray-300">
-            <a href="#" className="hover:text-white">
-              Car Care Info
-            </a>
-            <a href="#" className="hover:text-white">
-              SCW Timeline
-            </a>
-            <a href="#" className="hover:text-white">
-              SCW Interview
-            </a>
-            <a href="#" className="hover:text-white">
-              Products
-            </a>
-            <a href="#" className="hover:text-white">
-              Terms & Conditions
-            </a>
-            <a href="#" className="hover:text-white">
-              Privacy Policy
-            </a>
-          </div>
-          <p>
-            © Speed Car Wash. All Rights Reserved | A brand of Neaten Cleaning
-          </p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }
