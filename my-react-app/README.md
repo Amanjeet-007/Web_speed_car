@@ -14,3 +14,11 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Supabase setup
+
+Create a `.env` file in this folder using `.env.example` and add your Supabase project URL and anon/publishable key.
+
+The website submits all three enquiry forms directly to `public.wash_enquiries` using the existing columns `name`, `phone`, `email`, `service`, and `message`. No separate backend server is required.
+
+Do not expose a Supabase service-role/secret key in the frontend.

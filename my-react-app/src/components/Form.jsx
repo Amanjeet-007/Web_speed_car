@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { submitEnquiry } from "../lib/supabase";
 
 export default function BookingForm() {
   const [formData, setFormData] = useState({
@@ -18,33 +19,25 @@ export default function BookingForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/form/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      await submitEnquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message,
       });
 
-      const result = await response.json();
-      
-      if (result.success) {
-        // Database me data successfully save hone ke baad hi yeh true hoga
-        setSubmitted(true); 
-        // Form ko clear karne ke liye
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          service: "SCW WASHING",
-          message: "",
-        });
-      } else {
-        alert("Error: " + result.error);
-      }
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "SCW WASHING",
+        message: "",
+      });
     } catch (err) {
-      console.error("Network Error:", err);
-      alert("Network error. Please make sure your Express backend is running.");
+      console.error("Supabase enquiry error:", err);
+      alert("Unable to submit your request right now. Please try again.");
     }
   };
 
@@ -140,7 +133,6 @@ export default function BookingForm() {
                   <option value="SCW QUICK SERVICE">SCW Quick Service</option>
                   <option value="SCW DETAILING">SCW Detailing</option>
                   <option value="SCW WRAPPING">SCW Wrapping</option>
-                  <option value="FRANCHISE">Become Our Franchise</option>
                 </select>
               </div>
             </div>
