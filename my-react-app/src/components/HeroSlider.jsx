@@ -11,7 +11,7 @@ const slides = [
   {
     title: "New Look, New Feel",
     subtitle: "Platinum Wash | Ceramic Coatings | Internal Dry Cleaning",
-    image: "https://www.speedcarwash.com/images/slider/new/sl1.png",
+    image: "../../public/hero-car.png",
     tag: "Premium Detailing",
   },
 ];
@@ -23,7 +23,7 @@ export default function HeroSlider() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 6000);
+    }, 600000);
     return () => clearInterval(interval);
   }, []);
 
@@ -37,7 +37,6 @@ export default function HeroSlider() {
 
   return (
     <div className="relative w-full min-h-[420px] md:min-h-[480px] overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white border border-blue-700/50">
-      
       {/* Background Decorative Glow Elements */}
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -65,13 +64,13 @@ export default function HeroSlider() {
             <p className="text-sm md:text-lg text-blue-100/90 font-medium max-w-lg leading-relaxed">
               {slide.subtitle}
             </p>
-            <Link to={"services/washing"} >
-            <div className="pt-3">
-              <button className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-3.5 font-extrabold rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center space-x-2">
-                <span>Book Wash Now</span>
-                <span>→</span>
-              </button>
-            </div>
+            <Link to={"services/washing"}>
+              <div className="pt-3">
+                <button className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-3.5 font-extrabold rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center space-x-2">
+                  <span>Book Wash Now</span>
+                  <span>→</span>
+                </button>
+              </div>
             </Link>
           </div>
 
@@ -81,7 +80,7 @@ export default function HeroSlider() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="max-h-[280px] md:max-h-[380px] w-auto object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105"
+                className="w-[80vw] md:w-[61vw] max-w-none"
               />
             )}
           </div>
