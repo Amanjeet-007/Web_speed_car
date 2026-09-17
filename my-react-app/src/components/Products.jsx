@@ -17,7 +17,6 @@ export default function ProductsSection() {
         <h2 className="text-2xl font-bold text-gray-900">Speed Car Wash Products</h2>
       </div>
 
-      {/* Auto Scroll Container */}
       <div className="relative w-full overflow-hidden">
         <div className="flex space-x-6 animate-marquee whitespace-nowrap py-4">
           {[...products, ...products, ...products].map((product, idx) => (
@@ -39,7 +38,6 @@ export default function ProductsSection() {
                 </div>
               </div>
 
-              {/* Product Name */}
               <span className="text-xs font-bold text-gray-800">
                 {product.name}
               </span>
@@ -48,7 +46,6 @@ export default function ProductsSection() {
         </div>
       </div>
 
-      {/* Tailwind Custom Marquee Animation */}
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
