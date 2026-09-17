@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -64,12 +65,14 @@ export default function HeroSlider() {
             <p className="text-sm md:text-lg text-blue-100/90 font-medium max-w-lg leading-relaxed">
               {slide.subtitle}
             </p>
+            <Link to={"services/washing"} >
             <div className="pt-3">
               <button className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-3.5 font-extrabold rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center space-x-2">
                 <span>Book Wash Now</span>
                 <span>→</span>
               </button>
             </div>
+            </Link>
           </div>
 
           {/* Right Side: Image */}
