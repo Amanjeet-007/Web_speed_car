@@ -1,0 +1,14 @@
+The frontend uses the existing public.wash_enquiries table only.
+
+Columns used by the forms:
+- name
+- phone
+- email
+- service
+- message
+
+No city, state, or source columns are required for this version.
+
+Home BookingForm sends service=SCW WASHING (or the selected service).
+Contact Us sends service=CONTACT US.
+Click to Enquire sends service=GENERAL ENQUIRY.

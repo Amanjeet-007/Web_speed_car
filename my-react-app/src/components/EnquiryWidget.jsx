@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitEnquiry } from '../lib/supabase';
 
 export default function EnquiryWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,11 +16,25 @@ export default function EnquiryWidget() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    alert("Enquiry Sent Successfully!");
-    setIsOpen(false);
+
+    try {
+      await submitEnquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: "GENERAL ENQUIRY",
+        message: formData.message,
+      });
+
+      alert("Enquiry Sent Successfully!");
+      setFormData({ name: '', email: '', phone: '', city: '', message: '' });
+      setIsOpen(false);
+    } catch (error) {
+      console.error("Supabase enquiry error:", error);
+      alert("Unable to submit your request right now. Please try again.");
+    }
   };
 
   return (
