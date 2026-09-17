@@ -28,202 +28,169 @@ export function ServicesLayout() {
   ];
 
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left mb-12">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className="rounded-2xl p-5 flex flex-col justify-between bg-white shadow-sm hover:shadow-lg transition-shadow duration-300"
-            >
-              <div>
-                <div className="h-36 mb-5 rounded-xl overflow-hidden flex items-center justify-center bg-gray-100">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="font-bold text-sm mb-2 text-blue-900 tracking-wide">
-                  {service.title}
-                </h3>
-                <p className="text-xs text-gray-500 mb-5 leading-relaxed">
-                  {service.desc}
-                </p>
-              </div>
-              <button className="w-full bg-blue-600 text-white text-xs py-2.5 font-bold rounded-full hover:bg-blue-700 transition">
-                Know More
-              </button>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+      {services.map((service, i) => (
+        <div
+          key={i}
+          className="rounded-2xl p-5 flex flex-col justify-between bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-blue-50 group hover:-translate-y-1"
+        >
+          <div>
+            <div className="h-40 mb-4 rounded-xl overflow-hidden flex items-center justify-center bg-blue-50/50 p-2">
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              />
             </div>
-          ))}
+            <h3 className="font-extrabold text-sm mb-2 text-blue-900 tracking-wide">
+              {service.title}
+            </h3>
+            <p className="text-xs text-gray-600 mb-5 leading-relaxed">
+              {service.desc}
+            </p>
+          </div>
+          <button className="w-full bg-blue-600 text-white text-xs py-3 font-bold rounded-xl hover:bg-blue-700 shadow-md shadow-blue-600/20 transition">
+            Know More →
+          </button>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
 
 export default function AboutUs() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-gray-50 min-h-screen text-gray-800">
       <Navbar />
 
-      <div className="bg-black text-white py-10 px-4">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-xs text-gray-400 mb-2">
+      {/* Modern Hero Banner with Blue Gradient */}
+      <div className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white py-16 px-4 overflow-hidden shadow-lg">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <p className="text-xs text-blue-200 mb-3 font-medium">
             <Link to={"/"}>
-              <span className="hover:underline cursor-pointer">Home</span>
+              <span className="hover:underline cursor-pointer text-white">Home</span>
             </Link>{" "}
             / About Us
           </p>
-          <h1 className="text-3xl font-extrabold tracking-wide">About Us</h1>
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight">About Our Brand</h1>
+          <p className="text-blue-100/80 text-sm mt-2 max-w-xl">
+            Redefining car care and detailing standards across India with mechanized perfection.
+          </p>
         </div>
       </div>
 
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Intro + Franchise banner */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center mb-24">
-            <div className="lg:col-span-2 space-y-5">
+      <div className="max-w-7xl mx-auto px-4 py-16 space-y-24">
+        
+        {/* Intro Section with Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
+          <div className="lg:col-span-2 space-y-6">
+            <div className="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+              Welcome to Speed Car Wash
+            </div>
+            <div className="text-2xl md:text-3xl font-extrabold text-blue-900">
               <HeroRotatingText />
-
-              <p className="text-sm text-gray-600 leading-relaxed">
-                <strong className="text-blue-900 font-bold">
-                  Speed Car Wash
-                </strong>{" "}
-                is a brand which is literally going to change the way people
-                think about car cleaning. It is a unique mechanized car cleaning
-                concept where cars are getting pampered by the latest equipments
-                including high pressure cleaning machines, spray injection and
-                extraction machines, high powered vacuum cleaners, steam
-                cleaners and so on.
-              </p>
             </div>
-
-            <div className="bg-blue-900 text-white p-6 rounded-2xl shadow-lg flex flex-col justify-between overflow-hidden relative">
-              <div className="absolute left-0 top-0 h-full w-1.5 bg-red-600" />
-              <img
-                src="https://www.speedcarwash.com/images/franchising.png"
-                alt="Franchise with us"
-                className="rounded-xl"
-              />
-            </div>
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+              <strong className="text-blue-900 font-bold">Speed Car Wash</strong> is a brand which is literally going to change the way people think about car cleaning. It is a unique mechanized car cleaning concept where cars are getting pampered by the latest equipments including high pressure cleaning machines, spray injection and extraction machines, high powered vacuum cleaners, steam cleaners and so on.
+            </p>
           </div>
 
-          {/* Who We Are */}
-          <div className="bg-gray-50 p-8 sm:p-12 rounded-3xl shadow-sm mb-24">
-            <h3 className="text-lg font-extrabold text-blue-900 mb-6 uppercase tracking-wider">
-              Who We Are
-            </h3>
-            <div className="space-y-5 text-sm text-gray-600 leading-loose">
-              <p>
-                Welcome to Speed Car Wash a concept developed by LIV INDIA to
-                organize the Car Cleaning segment to give the community a new
-                definition of car care and detailing services which are not
-                professionally followed in India. Based at Delhi our endeavour
-                is to spread the awareness amongst car users about the Clean Car
-                Culture & Car Hygiene.
-              </p>
-              <p>
-                Speed Car Wash is a brand which is literally going to change the
-                way people think about car cleaning. It is a unique mechanized
-                car cleaning concept where cars are getting pampered by the
-                latest equipments including high pressure cleaning machines,
-                spray injection and extraction machines, high powered vacuum
-                cleaners, steam cleaners and so on.
-              </p>
-              <p>
-                In this fast moving life today we tend to spend more time in
-                travelling as a result spend hours in the car, navigating the
-                traffic jams. Air Pollution, Dust, Rain, Sunlight and Adverse
-                road conditions all keeps adding on woos of common car users.
-                And as a result, there is a severe need of Professional Car
-                Cleaning Organization to take care of all Car Cleaning jobs and
-                give us the finest and ultimate car cleaning experience and
-                satisfaction.
-              </p>
-              <p>
-                Speed Car Wash is here to stay and work dedicatedly towards
-                spreading the awareness among car users about their car hygiene
-                habits, cleanliness, durability of exterior look and other
-                common cleaning tips.
-              </p>
-              <p>
-                At Speed Car Wash we do a plethora of research on the car care
-                and maintenance, the aim is to deliver best of service and bring
-                in new concept to the car market. In the beginning we are
-                focusing on educating our customers about the whole concept of
-                Clean Car Culture, we have strong belief that our efforts will
-                not only please you but definitely surprise you.
-              </p>
-            </div>
-          </div>
-
-          {/* Sparkling section */}
-          <section className="py-8 mb-24 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Speed Car Wash for{" "}
-              <span className="text-blue-600">Sparkling</span> Cars in hassle
-              free way...
-            </h2>
-            <p className="max-w-3xl mx-auto text-gray-500 text-sm md:text-base leading-relaxed mb-14">
-              Speed Car Wash is a brand which is literally going to change the
-              way people think about car cleaning. It is a unique mechanized
-              car cleaning concept where cars are getting pampered by the
-              latest equipments including high pressure cleaning machines,
-              spray injection and extraction machines, high powered vacuum
-              cleaners, steam cleaners and so on.
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "Best Experience",
-                  image: "https://www.speedcarwash.com/img/f2.png",
-                },
-                {
-                  title: "Affordable Prices",
-                  image: "https://www.speedcarwash.com/img/f3.png",
-                },
-                {
-                  title: "Clean Cars",
-                  image: "https://www.speedcarwash.com/img/f1.png",
-                },
-                {
-                  title: "Shiny Cars",
-                  image: "https://www.speedcarwash.com/img/f5.png",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300"
-                >
-                  <div className="w-20 h-20 bg-red-50 rounded-full mb-4 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="font-bold text-gray-700 text-sm">
-                    {item.title}
-                  </h3>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Services We Offer */}
-          <div className="text-center relative py-14 bg-red-50/50 rounded-3xl">
-            <h3 className="text-2xl font-extrabold text-blue-900 mb-8">
-              Services We Offer
-            </h3>
-            <ServicesLayout />
-            <p className="text-xs text-gray-500 mt-6 italic">
-              "Because your car deserves the absolute best care and pampering."
-            </p>
+          <div className="relative rounded-2xl overflow-hidden shadow-xl border-4 border-blue-50 group">
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent z-10"></div>
+            <img
+              src="./car.webp"
+              alt="car"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <span className="absolute bottom-4 left-4 z-20 text-white font-bold text-sm bg-blue-600/80 backdrop-blur-md px-3 py-1 rounded-lg">
+              Next-Gen Care 🚗
+            </span>
           </div>
         </div>
-      </section>
+
+        {/* Who We Are - Grid Cards style */}
+        <div className="bg-gradient-to-br from-blue-900 to-indigo-900 text-white p-8 sm:p-12 rounded-3xl shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <h3 className="text-xl font-black text-white mb-8 uppercase tracking-wider flex items-center gap-3">
+            <span className="w-3 h-3 bg-blue-400 rounded-full inline-block"></span>
+            Who We Are
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-blue-100/90 leading-relaxed">
+            <div className="space-y-4 bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <p>
+                Welcome to Speed Car Wash a concept developed by <strong className="text-white">LIV INDIA</strong> to organize the Car Cleaning segment to give the community a new definition of car care and detailing services which are not professionally followed in India. Based at Delhi our endeavour is to spread the awareness amongst car users about the Clean Car Culture & Car Hygiene.
+              </p>
+              <p>
+                In this fast moving life today we tend to spend more time in travelling as a result spend hours in the car, navigating the traffic jams. Air Pollution, Dust, Rain, Sunlight and Adverse road conditions all keeps adding on woos of common car users.
+              </p>
+            </div>
+            
+            <div className="space-y-4 bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <p>
+                Speed Car Wash is here to stay and work dedicatedly towards spreading the awareness among car users about their car hygiene habits, cleanliness, durability of exterior look and other common cleaning tips.
+              </p>
+              <p>
+                At Speed Car Wash we do a plethora of research on the car care and maintenance, the aim is to deliver best of service and bring in new concept to the car market. In the beginning we are focusing on educating our customers about the whole concept of Clean Car Culture.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Features / Sparkling section */}
+        <section className="text-center">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-4">
+            Speed Car Wash for <span className="text-blue-600">Sparkling</span> Cars in a Hassle-Free Way...
+          </h2>
+          <p className="max-w-2xl mx-auto text-gray-600 text-sm md:text-base leading-relaxed mb-12">
+            Pamper your vehicle with high-pressure systems, advanced vacuum extraction, and premium detailing products.
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { title: "Best Experience", image: "https://www.speedcarwash.com/img/f2.png" },
+              { title: "Affordable Prices", image: "https://www.speedcarwash.com/img/f3.png" },
+              { title: "Clean Cars", image: "https://www.speedcarwash.com/img/f1.png" },
+              { title: "Shiny Cars", image: "https://www.speedcarwash.com/img/f5.png" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col items-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1"
+              >
+                <div className="w-20 h-20 bg-blue-50 rounded-2xl mb-4 flex items-center justify-center p-3 group-hover:bg-blue-100 transition-colors">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <h3 className="font-bold text-blue-900 text-sm">
+                  {item.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Services We Offer Section */}
+        <div className="bg-blue-50/60 p-8 sm:p-12 rounded-3xl border border-blue-100">
+          <div className="text-center mb-10">
+            <span className="text-blue-600 font-extrabold text-xs uppercase tracking-widest bg-blue-100 px-3 py-1 rounded-full">Our Expertise</span>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-blue-900 mt-3">
+              Services We Offer
+            </h3>
+          </div>
+          
+          <ServicesLayout />
+
+          <p className="text-xs text-gray-500 mt-10 text-center italic font-medium">
+            "Because your car deserves the absolute best care and pampering."
+          </p>
+        </div>
+
+      </div>
 
       <Footer />
     </div>

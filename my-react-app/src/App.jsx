@@ -11,12 +11,11 @@ export default function SpeedCarWashLanding() {
     <div className="font-sans bg-gray-50 text-gray-800 antialiased">
       <Navbar/>
       <EnquiryWidget />
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-600 text-white overflow-hidden py-16">
-
+      <section className="relative text-white overflow-hidden py-16">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <HeroSlider />
         </div>
-        <div className="bg-black/30 mt-12 py-3 text-center text-sm font-medium tracking-wide">
+        <div className="bg-blue-600 mt-12 py-3 text-center text-sm font-medium tracking-wide">
           Rome wasn't built in a day. But your car will be washed in{" "}
           <span className="text-yellow-400 font-bold">20 minutes!!</span>{" "}
           &nbsp;|&nbsp;
@@ -42,7 +41,6 @@ export default function SpeedCarWashLanding() {
           and so on.
         </p>
 
-        {/* Feature Icons Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             {
@@ -153,67 +151,6 @@ export default function SpeedCarWashLanding() {
           <button className="bg-blue-600 px-6 py-3 font-bold rounded text-sm hover:bg-blue-500 shadow">
             Grab Booklet
           </button>
-        </div>
-      </section>
-
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Franchise With Us</h2>
-            <p className="text-xs text-gray-600 leading-relaxed mb-4">
-              When India is teaming with glowing and enthusiastic business
-              opportunities, car washing business can bang the Indian market.
-              The country where innumerable cars are catching sights of people,
-              smart car wash can wrap up the opportunity. This venture is
-              entirely dedicated towards spreading the awareness among car users
-              about their car hygiene habits, cleanliness, durability of
-              exterior look and other common cleaning tips. Although it is an
-              unorganized sector till date, a new and organized way of car
-              washing can create the difference.{" "}
-              <span className="text-blue-600 font-semibold cursor-pointer">
-                Know More
-              </span>
-            </p>
-            <div className="h-64 bg-gray-100 rounded-lg overflow-hidden border shadow-sm flex items-center justify-center">
-              <img
-                src="https://www.speedcarwash.com/img/fr1.png"
-                alt="Franchise"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="space-y-4 bg-white p-6 border rounded-lg shadow-sm">
-            <h3 className="text-xl font-bold border-b pb-2">and more...</h3>
-            <div className="space-y-3">
-              <div className="p-3 border rounded hover:bg-gray-50 cursor-pointer">
-                <h4 className="font-bold text-sm text-blue-900">
-                  Become Our Franchise
-                </h4>
-                <p className="text-xs text-gray-500">
-                  Speed Car Wash franchisees do not need any prior technical
-                  experience to effectively operate a franchise.{" "}
-                  <span className="text-blue-600 font-semibold">Apply Now</span>
-                </p>
-              </div>
-              <div className="p-3 border rounded hover:bg-gray-50 cursor-pointer">
-                <h4 className="font-bold text-sm text-blue-900">
-                  Rent your Property
-                </h4>
-                <p className="text-xs text-gray-500">
-                  Having commercial space and planning to rent it to
-                  professionals?
-                </p>
-              </div>
-              <div className="p-3 border rounded hover:bg-gray-50 cursor-pointer">
-                <h4 className="font-bold text-sm text-blue-900">
-                  Locate Our Outlets
-                </h4>
-                <p className="text-xs text-gray-500">
-                  Speed Car Wash has a number of outlets across India.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
