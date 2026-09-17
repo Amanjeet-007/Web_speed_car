@@ -75,7 +75,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar - Simple, Clean aur Static (Non-overlapping) */}
-      <header className="bg-white shadow-sm relative w-full z-40">
+      <header className="bg-white shadow-sm sticky top-0 w-full z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center h-20">
           {/* Brand Logo */}
           <NavLink
@@ -309,7 +309,7 @@ export default function Navbar() {
 
         {/* Mobile Slide-in Menu Drawer */}
         <div
-          className={`fixed inset-y-0 right-0 h-[100dvh] w-[85%] max-w-sm bg-white z-[999] shadow-2xl flex flex-col justify-between transform transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto ${
+          className={`fixed inset-y-0 right-0 h-[100dvh] w-[85%] max-w-sm bg-white z-[999] shadow-2xl flex flex-col justify-between transform transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto pb-20 ${
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

@@ -45,7 +45,7 @@ export default function HeroSlider() {
       {slides.map((slide, idx) => (
         <div
           key={idx}
-          className={`absolute inset-0 transition-all duration-700 ease-in-out flex flex-col md:flex-row items-center justify-between gap-6 px-8 md:px-16 py-10 ${
+          className={`absolute inset-0 transition-all duration-700 ease-in-out flex flex-col md:flex-row items-center justify-between gap-6 px-10 md:px-10 py-10 ${
             idx === current
               ? "opacity-100 translate-x-0 z-10"
               : "opacity-0 translate-x-8 z-0 pointer-events-none"
@@ -58,7 +58,7 @@ export default function HeroSlider() {
                 ✨ {slide.tag}
               </span>
             )}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white drop-shadow-sm">
+            <h1 className="text-3xl text-[5vw] md:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white drop-shadow-sm">
               {slide.title}
             </h1>
             <p className="text-sm md:text-lg text-blue-100/90 font-medium max-w-lg leading-relaxed">
