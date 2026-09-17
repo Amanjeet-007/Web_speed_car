@@ -5,13 +5,13 @@ const slides = [
   {
     title: "Automatic Car Wash",
     subtitle: "Feel The Speedy Performance In Controlled Manpower!!",
-    image: "https://www.speedcarwash.com/images/slider/new/automachine.png",
+    image: "./machine.webp",
     tag: "Next-Gen Technology",
   },
   {
     title: "New Look, New Feel",
-    subtitle: "Platinum Wash | Ceramic Coatings | Internal Dry Cleaning",
-    image: "https://www.speedcarwash.com/images/slider/new/sl1.png",
+    subtitle: "Platinum Wash, Ceramic Coatings, Internal Dry Cleaning",
+    image: "./h2.webp",
     tag: "Premium Detailing",
   },
 ];
@@ -53,7 +53,7 @@ export default function HeroSlider() {
           }`}
         >
           {/* Left Side: Text Content */}
-          <div className="w-full md:w-[55%] space-y-4 text-center md:text-left flex flex-col items-center md:items-start z-20">
+          <div className="w-full md:w-[55%] space-y-4 px-5 text-center md:text-left flex flex-col items-center md:items-start z-20">
             {slide.tag && (
               <span className="bg-blue-500/30 border border-blue-400/40 text-blue-200 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider backdrop-blur-md">
                 ✨ {slide.tag}
@@ -106,7 +106,7 @@ export default function HeroSlider() {
       </button>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-1 z-30">
         {slides.map((_, idx) => (
           <button
             key={idx}
