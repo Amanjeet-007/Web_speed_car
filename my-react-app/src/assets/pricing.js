@@ -1,5 +1,3 @@
-// src/components/pricing.js
-
 export const PRICE_MATRIX = {
     "silver wash": {
         Hatchback: 400,

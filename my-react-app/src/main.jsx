@@ -16,6 +16,7 @@ import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import CheckoutPage from "./pages/Checkout.jsx";
 import Cart from "./pages/Cart.jsx";
+import Service from "./components/Service.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/services/:type" element={<ServicePageTemplate />} />
+          <Route path="/services/:type/:name" element={<Service />} />
           <Route path="/media" element={<MediaPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/page/:pageNumber" element={<BlogPage />} />

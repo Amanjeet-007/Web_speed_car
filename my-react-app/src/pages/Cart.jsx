@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { removeFromCart } from "../redux/cartSlice"; // <-- removeFromCart import kar liya gaya hai
+import { removeFromCart } from "../redux/cartSlice";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -11,13 +11,16 @@ export default function Cart() {
 
   const cartItems = useSelector((state) => state.cart.items);
 
-  // Subtotal aur Tax calculation
-  const subtotal = cartItems.reduce((acc, item) => acc + (item.price || 0), 0);
+  // Subtotal calculation (sirf un items ka price jinka price valid number hai)
+  const subtotal = cartItems.reduce((acc, item) => {
+    const itemPrice = Number(item.price);
+    return acc + (isNaN(itemPrice) ? 0 : itemPrice);
+  }, 0);
+
   const tax = Math.round(subtotal * 0.18); // 18% GST estimation
   const grandTotal = subtotal + (cartItems.length > 0 ? tax : 0);
 
   const handleRemove = (index) => {
-    // Redux action dispatch karke item remove kiya ja raha hai
     dispatch(removeFromCart(index));
   };
 
@@ -62,54 +65,65 @@ export default function Cart() {
               
               {/* Left Side: Cart Items List */}
               <div className="lg:col-span-2 space-y-4">
-                {cartItems.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-                  >
-                    <div className="flex items-center gap-4">
-                      {item.image ? (
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-20 h-20 rounded-xl object-cover border border-gray-100 shrink-0"
-                        />
-                      ) : (
-                        <div className="w-20 h-20 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs shrink-0">
-                          CarWash
-                        </div>
-                      )}
-                      <div>
-                        <h3 className="text-sm font-bold text-gray-900">{item.title}</h3>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="text-[10px] text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-full">
-                            {item.category}
-                          </span>
-                          {item.time && (
-                            <span className="text-[10px] text-gray-400 font-medium">
-                              ⏱ {item.time}
+                {cartItems.map((item, index) => {
+                  const hasValidPrice = item.price && item.price > 0;
+
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                    >
+                      <div className="flex items-center gap-4">
+                        {item.image ? (
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-20 h-20 rounded-xl object-cover border border-gray-100 shrink-0"
+                          />
+                        ) : (
+                          <div className="w-20 h-20 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs shrink-0">
+                            CarWash
+                          </div>
+                        )}
+                        <div>
+                          <h3 className="text-sm font-bold text-gray-900">{item.title}</h3>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-[10px] text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-full">
+                              {item.category}
                             </span>
-                          )}
+                            {item.time && (
+                              <span className="text-[10px] text-gray-400 font-medium">
+                                ⏱ {item.time}
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-gray-100 gap-2">
-                      <span className="text-base font-extrabold text-green-600">
-                        ₹{item.price}
-                      </span>
-                      <button
-                        onClick={() => handleRemove(index)}
-                        className="text-xs text-red-500 hover:text-red-700 font-medium transition cursor-pointer"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  </motion.div>
-                ))}
+                      <div className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-gray-100 gap-2">
+                        {hasValidPrice ? (
+                          <span className="text-base font-extrabold text-green-600">
+                            ₹{item.price}
+                          </span>
+                        ) : (
+                          <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+                            Price on request
+                          </span>
+                        )}
+                        
+                        <button
+                          onClick={() => handleRemove(index)}
+                          className="text-xs text-red-500 hover:text-red-700 font-medium transition cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Right Side: Price Details & Checkout Button */}

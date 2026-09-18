@@ -5,14 +5,17 @@ import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-// Agar cart clear karne ki action ho to import kar sakte ho, jaise:
-// import { clearCart } from "../redux/cartSlice";
 
 export default function CheckoutPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const cartItems = useSelector((state) => state.cart.items);
+
+  // Check karein ki cart mein koi aisi service hai kya jiska price available nahi hai
+  const hasCustomPriceItems = cartItems.some(
+    (item) => !item.price || Number(item.price) === 0
+  );
 
   // Form state
   const [formData, setFormData] = useState({
@@ -25,13 +28,26 @@ export default function CheckoutPage() {
     paymentMethod: "online",
   });
 
+  // React recommended approach: Render ke dauran hi state adjust karna (Bina useEffect ke)
+  const [prevHasCustomPrice, setPrevHasCustomPrice] = useState(hasCustomPriceItems);
+  if (hasCustomPriceItems !== prevHasCustomPrice) {
+    setPrevHasCustomPrice(hasCustomPriceItems);
+    if (hasCustomPriceItems && formData.paymentMethod === "online") {
+      setFormData((prev) => ({ ...prev, paymentMethod: "cod" }));
+    }
+  }
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Subtotal calculation
-  const subtotal = cartItems.reduce((acc, item) => acc + (item.price || 0), 0);
-  const tax = Math.round(subtotal * 0.18); // 18% GST ya tax estimation
+  // Subtotal calculation (sirf valid prices ke liye)
+  const subtotal = cartItems.reduce((acc, item) => {
+    const itemPrice = Number(item.price);
+    return acc + (isNaN(itemPrice) ? 0 : itemPrice);
+  }, 0);
+
+  const tax = Math.round(subtotal * 0.18); // 18% GST estimation
   const grandTotal = subtotal + (cartItems.length > 0 ? tax : 0);
 
   const handleCheckoutSubmit = (e) => {
@@ -47,7 +63,6 @@ export default function CheckoutPage() {
 
     // Success booking logic / API call here
     alert("Booking confirmed successfully! Thank you for choosing Speed Car Wash.");
-    // dispatch(clearCart());
     navigate("/");
   };
 
@@ -182,18 +197,27 @@ export default function CheckoutPage() {
                   <h3 className="text-sm font-bold text-gray-900 pb-3 mb-4 border-b border-gray-100 uppercase tracking-wide">
                     3. Payment Method
                   </h3>
+                  
+                  {hasCustomPriceItems && (
+                    <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 font-medium">
+                      ⚠️ Your cart contains custom/detailing services (Price on request). Online payment is only available for standard washing services. Please choose offline payment below.
+                    </div>
+                  )}
+
                   <div className="space-y-3">
-                    <label className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-200 cursor-pointer">
+                    <label className={`flex items-center gap-3 p-3 rounded-xl border transition ${hasCustomPriceItems ? 'bg-gray-100 opacity-50 cursor-not-allowed border-gray-200' : 'bg-gray-50 cursor-pointer border-gray-200'}`}>
                       <input
                         type="radio"
                         name="paymentMethod"
                         value="online"
                         checked={formData.paymentMethod === "online"}
                         onChange={handleChange}
+                        disabled={hasCustomPriceItems}
                         className="text-blue-600 focus:ring-blue-500"
                       />
                       <span className="text-xs font-semibold text-gray-800">Online Payment (UPI, Credit/Debit Card, NetBanking)</span>
                     </label>
+
                     <label className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-200 cursor-pointer">
                       <input
                         type="radio"
@@ -203,7 +227,7 @@ export default function CheckoutPage() {
                         onChange={handleChange}
                         className="text-blue-600 focus:ring-blue-500"
                       />
-                      <span className="text-xs font-semibold text-gray-800">Pay after Service / Cash at Workshop</span>
+                      <span className="text-xs font-semibold text-gray-800">Pay after Service / Cash at Workshop (Offline)</span>
                     </label>
                   </div>
                 </div>
@@ -218,17 +242,27 @@ export default function CheckoutPage() {
                   </h3>
 
                   <div className="space-y-4 max-h-64 overflow-y-auto pr-1 mb-4">
-                    {cartItems.map((item, index) => (
-                      <div key={index} className="flex justify-between items-start text-xs pb-3 border-b border-gray-50">
-                        <div>
-                          <p className="font-bold text-gray-900">{item.title}</p>
-                          <span className="text-[10px] text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-full inline-block mt-1">
-                            {item.category}
-                          </span>
+                    {cartItems.map((item, index) => {
+                      const hasValidPrice = item.price && item.price > 0;
+
+                      return (
+                        <div key={index} className="flex justify-between items-start text-xs pb-3 border-b border-gray-50">
+                          <div>
+                            <p className="font-bold text-gray-900">{item.title}</p>
+                            <span className="text-[10px] text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-full inline-block mt-1">
+                              {item.category}
+                            </span>
+                          </div>
+                          {hasValidPrice ? (
+                            <span className="font-extrabold text-gray-800">₹{item.price}</span>
+                          ) : (
+                            <span className="font-bold text-gray-400 text-[10px] uppercase">
+                              Price on request
+                            </span>
+                          )}
                         </div>
-                        <span className="font-extrabold text-gray-800">₹{item.price}</span>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
 
                   <div className="space-y-2 text-xs text-gray-600 pt-2 border-t border-gray-100">

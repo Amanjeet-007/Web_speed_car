@@ -52,7 +52,7 @@ export default function HeroSlider() {
           }`}
         >
           {/* Left Side: Text Content */}
-          <div className="w-full md:w-[55%] space-y-4 px-5 text-center md:text-left flex flex-col items-center md:items-start z-20">
+          <div className="w-full md:w-[55%] space-y-4 md:pl-10 text-center md:text-left flex flex-col items-center md:items-start z-20">
             {slide.tag && (
               <span className="bg-blue-500/30 border border-blue-400/40 text-blue-200 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider backdrop-blur-md">
                 ✨ {slide.tag}
@@ -66,8 +66,8 @@ export default function HeroSlider() {
             </p>
             <Link to={"services/washing"}>
               <div className="pt-3">
-                <button className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-3.5 font-extrabold rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center space-x-2">
-                  <span>Book Wash Now</span>
+                <button className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-3.5 font-extrabold rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center space-x-2 ">
+                  <span>Book Now</span>
                   <span>→</span>
                 </button>
               </div>
@@ -80,7 +80,7 @@ export default function HeroSlider() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-[80vw] md:w-[61vw] max-w-none"
+                className="w-[80vw] md:w-[50vw] max-w-none md:pr-10"
               />
             )}
           </div>

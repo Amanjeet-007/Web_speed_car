@@ -3,13 +3,13 @@ import BookingForm from "./components/Form";
 import ProductsSection from "./components/Products";
 import Footer from "./components/Footer";
 import EnquiryWidget from "./components/EnquiryWidget";
-import HeroRotatingText from "./components/RotatingText";
 import HeroSlider from "./components/HeroSlider";
+import { ServicesLayout } from "./pages/About";
 
 export default function SpeedCarWashLanding() {
   return (
     <div className="font-sans bg-gray-50 text-gray-800 antialiased">
-      <Navbar/>
+      <Navbar />
       <EnquiryWidget />
       <section className="relative text-white overflow-hidden py-16">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -25,55 +25,88 @@ export default function SpeedCarWashLanding() {
         </div>
       </section>
 
-      <section className="py-16 max-w-7xl mx-auto px-4 text-center">
-          
-
-    <div className="max-w-3xl mx-auto flex items-center ">
-    <HeroRotatingText/>
-
-    </div>
-        <p className="max-w-3xl mx-auto text-gray-600 text-start text-sm md:text-base leading-relaxed mb-12">
-          Speed Car Wash is a brand which is literally going to change the way
-          people think about car cleaning. It is a unique mechanized car
-          cleaning concept where cars are getting pampered by the latest
-          equipments including high pressure cleaning machines, spray injection
-          and extraction machines, high powered vacuum cleaners, steam cleaners
-          and so on.
-        </p>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            {
-              title: "Best Experience",
-              image: "https://www.speedcarwash.com/img/f2.png", // Yahan aap apni baaki images ke links bhi daal sakte hain
-            },
-            {
-              title: "Affordable Prices",
-              image: "https://www.speedcarwash.com/img/f3.png",
-            },
-            {
-              title: "Clean Cars",
-              image: "https://www.speedcarwash.com/img/f1.png",
-            },
-            {
-              title: "Shiny Cars",
-              image: "https://www.speedcarwash.com/img/f5.png",
-            },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm border"
-            >
-              <div className="w-20 h-20 bg-red-100 rounded-full mb-3 flex items-center justify-center overflow-hidden border-2 border-red-200">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="font-bold text-gray-700">{item.title}</h3>
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50/50">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Grid Layout: Left Cards (2) | Center Text | Right Cards (2) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left 2 Cards */}
+            <div className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-4">
+              {[
+                {
+                  title: "Best Experience",
+                  image: "https://www.speedcarwash.com/img/f2.png",
+                },
+                {
+                  title: "Shiny Cars",
+                  image: "https://www.speedcarwash.com/img/f5.png",
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="group flex flex-col items-center p-5 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-100 hover:-translate-y-1"
+                >
+                  <div className="w-20 h-20 bg-blue-50/80 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-blue-100 group-hover:bg-blue-100/50 transition-colors duration-300">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-xs md:text-sm text-center group-hover:text-blue-600 transition-colors">
+                    {item.title}
+                  </h3>
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Center Text Area */}
+            <div className="lg:col-span-6 text-center px-2">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-4">
+                Speed Car Wash for{" "}
+                <span className="text-blue-600">Sparkling</span> Cars in a
+                Hassle-Free Way...
+              </h2>
+
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                Speed Car Wash is a brand which is literally going to change the
+                way people think about car cleaning. It is a unique mechanized
+                car cleaning concept where cars are getting pampered by the
+                latest equipments including high pressure cleaning machines,
+                spray injection and extraction machines, high powered vacuum
+                cleaners, steam cleaners and so on.
+              </p>
+            </div>
+
+            {/* Right 2 Cards */}
+            <div className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 gap-4">
+              {[
+                {
+                  title: "Clean Cars",
+                  image: "https://www.speedcarwash.com/img/f1.png",
+                },
+                {
+                  title: "Affordable Prices",
+                  image: "https://www.speedcarwash.com/img/f3.png",
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="group flex flex-col items-center p-5 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-100 hover:-translate-y-1"
+                >
+                  <div className="w-20 h-20 bg-blue-50/80 rounded-2xl mb-3 flex items-center justify-center overflow-hidden border border-blue-100 group-hover:bg-blue-100/50 transition-colors duration-300">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-xs md:text-sm text-center group-hover:text-blue-600 transition-colors">
+                    {item.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -84,52 +117,7 @@ export default function SpeedCarWashLanding() {
             LOVE YOUR CAR. WE MAKE IT MORE ADORABLE.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-left">
-            {[
-              {
-                title: "SCW WASHING",
-                desc: "Speed Car Wash is offering a wide range of washing services to car owners including top wash...",
-                image: "https://www.speedcarwash.com/img/s1.png",
-              },
-              {
-                title: "SCW QUICK SERVICE",
-                desc: "As a Speed Service Point (SSP), we pledge to provide high quality automotive maintenance services...",
-                image: "https://www.speedcarwash.com/img/s2.png",
-              },
-              {
-                title: "SCW DETAILING",
-                desc: "Primary motive to serve our customers with professional car detailing service with internationally approved standards...",
-                image: "https://www.speedcarwash.com/img/s3.png",
-              },
-              {
-                title: "SCW WRAPPING",
-                desc: "Our network of trained SCW Vehicle Wrappers can help you create impactful vehicle branding...",
-                image: "https://www.speedcarwash.com/img/s4.png",
-              },
-            ].map((service, i) => (
-              <div
-                key={i}
-                className="border rounded-lg p-4 flex flex-col justify-between shadow-xs bg-white"
-              >
-                <div>
-                  <div className="h-36 mb-4 rounded overflow-hidden flex items-center justify-center bg-gray-100">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover rounded"
-                    />
-                  </div>
-                  <h3 className="font-bold text-sm mb-2 text-blue-900">
-                    {service.title}
-                  </h3>
-                  <p className="text-xs text-gray-600 mb-4">{service.desc}</p>
-                </div>
-                <button className="w-full bg-blue-600 text-white text-xs py-2 font-bold rounded hover:bg-blue-700">
-                  Know More
-                </button>
-              </div>
-            ))}
-          </div>
+          <ServicesLayout/>
         </div>
       </section>
 
@@ -187,9 +175,10 @@ export default function SpeedCarWashLanding() {
           </div>
         </div>
       </section>
+      <div className="mb-5" id="booking-form"></div>
       <BookingForm />
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }

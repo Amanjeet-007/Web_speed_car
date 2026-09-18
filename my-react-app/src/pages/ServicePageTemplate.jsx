@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
@@ -48,7 +48,6 @@ export default function ServicePageTemplate() {
   };
 
   if (type === "wrapping") {
-    // Wrapping ke liye pricing ki zaroorat nahi hai (yeh as it is rahega)
     return (
       <>
         <Navbar />
@@ -262,36 +261,38 @@ export default function ServicePageTemplate() {
                   </div>
 
                   <div className="w-full md:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start">
-                        <h3 className="text-lg font-bold text-gray-900">
-                          {service.title}
-                        </h3>
+                    <Link to={`/services/${type}/${service.title}`}>
+                      <div>
+                        <div className="flex justify-between items-start">
+                          <h3 className="text-lg font-bold text-gray-900">
+                            {service.title}
+                          </h3>
 
-                        {/* Dynamic Price Tag Display */}
-                        {pricing ? (
-                          <div className="text-right">
-                            <span className="text-xl font-extrabold text-green-600">
-                              ₹{pricing.categoryPrice}
+                          {/* Dynamic Price Tag Display */}
+                          {pricing ? (
+                            <div className="text-right">
+                              <span className="text-xl font-extrabold text-green-600">
+                                ₹{pricing.categoryPrice}
+                              </span>
+                              <span className="block text-[10px] text-gray-400">
+                                {pricing.surchargeLabel}
+                              </span>
+                            </div>
+                          ) : (
+                            <span className="text-xs text-gray-400">
+                              Price on request
                             </span>
-                            <span className="block text-[10px] text-gray-400">
-                              {pricing.surchargeLabel}
-                            </span>
-                          </div>
-                        ) : (
-                          <span className="text-xs text-gray-400">
-                            Price on request
-                          </span>
-                        )}
+                          )}
+                        </div>
+
+                        <p className="text-xs text-red-500 font-semibold mt-1.5">
+                          {service.time}
+                        </p>
+                        <p className="text-sm text-gray-500 mt-3 leading-relaxed">
+                          {service.description}
+                        </p>
                       </div>
-
-                      <p className="text-xs text-red-500 font-semibold mt-1.5">
-                        {service.time}
-                      </p>
-                      <p className="text-sm text-gray-500 mt-3 leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
+                    </Link>
 
                     <div className="flex flex-wrap justify-between items-center mt-6 pt-4 border-t border-gray-50 gap-4">
                       {/* Social Share Icons */}
