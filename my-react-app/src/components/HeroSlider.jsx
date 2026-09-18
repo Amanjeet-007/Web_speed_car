@@ -5,13 +5,13 @@ const slides = [
   {
     title: "Automatic Car Wash",
     subtitle: "Feel The Speedy Performance In Controlled Manpower!!",
-    image: "https://www.speedcarwash.com/images/slider/new/automachine.png",
+    image: "./machine.webp",
     tag: "Next-Gen Technology",
   },
   {
     title: "New Look, New Feel",
-    subtitle: "Platinum Wash | Ceramic Coatings | Internal Dry Cleaning",
-    image: "https://www.speedcarwash.com/images/slider/new/sl1.png",
+    subtitle: "Platinum Wash, Ceramic Coatings, Internal Dry Cleaning",
+    image: "./h2.webp",
     tag: "Premium Detailing",
   },
 ];
@@ -45,20 +45,20 @@ export default function HeroSlider() {
       {slides.map((slide, idx) => (
         <div
           key={idx}
-          className={`absolute inset-0 transition-all duration-700 ease-in-out flex flex-col md:flex-row items-center justify-between gap-6 px-8 md:px-16 py-10 ${
+          className={`absolute inset-0 transition-all duration-700 ease-in-out flex flex-col md:flex-row items-center justify-between gap-6 px-10 md:px-10 py-10 ${
             idx === current
               ? "opacity-100 translate-x-0 z-10"
               : "opacity-0 translate-x-8 z-0 pointer-events-none"
           }`}
         >
           {/* Left Side: Text Content */}
-          <div className="w-full md:w-[55%] space-y-4 text-center md:text-left flex flex-col items-center md:items-start z-20">
+          <div className="w-full md:w-[55%] space-y-4 px-5 text-center md:text-left flex flex-col items-center md:items-start z-20">
             {slide.tag && (
               <span className="bg-blue-500/30 border border-blue-400/40 text-blue-200 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider backdrop-blur-md">
                 ✨ {slide.tag}
               </span>
             )}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white drop-shadow-sm">
+            <h1 className="text-3xl text-[5vw] md:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white drop-shadow-sm">
               {slide.title}
             </h1>
             <p className="text-sm md:text-lg text-blue-100/90 font-medium max-w-lg leading-relaxed">
@@ -105,7 +105,7 @@ export default function HeroSlider() {
       </button>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-1 z-30">
         {slides.map((_, idx) => (
           <button
             key={idx}
