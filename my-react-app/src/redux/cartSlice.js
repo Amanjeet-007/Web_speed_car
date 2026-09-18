@@ -1,25 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  items: [], // { id, title, price, category, time, image }
-  popupMessage: null, // Toast notification message ke liye
+  items: [],
+  popupMessage: null,
 };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
+
   reducers: {
     addToCart: (state, action) => {
       const newItem = action.payload;
-      // Check kar sakte hain agar same service + category already hai ya nahi
+
       state.items.push(newItem);
       state.popupMessage = `${newItem.title} (${newItem.category}) added to cart!`;
     },
+
     removeFromCart: (state, action) => {
       state.items = state.items.filter((_, index) => index !== action.payload);
+    },
+
+    // Clear complete cart after successful payment
+    clearCart: (state) => {
+      state.items = [];
+    },
+
+    clearPopupMessage: (state) => {
+      state.popupMessage = null;
     },
   },
 });
 
-export const { addToCart, clearPopupMessage, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, clearPopupMessage } = cartSlice.actions;
+
 export default cartSlice.reducer;

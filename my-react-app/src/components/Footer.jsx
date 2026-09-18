@@ -43,7 +43,7 @@ export default function Footer() {
               <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-blue-500/10 group-hover:scale-105 transition-transform">
                 <img
                   alt="Speed Car Wash"
-                  class="transition-all duration-300 object-contain h-9"
+                  className="transition-all duration-300 object-contain h-9"
                   src="https://www.speedcarwash.com/images/logo.png"
                 />
               </div>
