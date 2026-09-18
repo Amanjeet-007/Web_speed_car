@@ -1,0 +1,9 @@
+# Supabase Edge Functions configuration
+# Checkout functions are intentionally public endpoints because customers are not logged in.
+# The functions perform their own input validation and use server-side Razorpay credentials.
+
+[functions.create-razorpay-order]
+verify_jwt = false
+
+[functions.verify-razorpay-payment]
+verify_jwt = false

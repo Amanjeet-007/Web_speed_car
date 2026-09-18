@@ -23,7 +23,7 @@ export default function HeroSlider() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 600000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -80,7 +80,7 @@ export default function HeroSlider() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-[80vw] md:w-[50vw] max-w-none md:pr-10"
+                className="max-h-[280px] md:max-h-[380px] w-auto object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105"
               />
             )}
           </div>
