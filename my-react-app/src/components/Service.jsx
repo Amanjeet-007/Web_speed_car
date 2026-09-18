@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -15,6 +16,7 @@ export default function Service() {
 
   const [selectedCategory, setSelectedCategory] = useState("Sedan");
   const [lang, setLang] = useState("en");
+  const [showToast, setShowToast] = useState(false); // Toast state
 
   const categories = [
     "Hatchback",
@@ -55,7 +57,6 @@ export default function Service() {
     ? getPriceBreakdown(item_details.title, selectedCategory)
     : null;
 
-  // Check karein ki price valid hai ya nahi (> 0)
   const hasPrice = pricing && pricing.categoryPrice && pricing.categoryPrice > 0;
 
   const descriptionListEn = item_details.description
@@ -90,12 +91,47 @@ export default function Service() {
       image: item_details.image,
     };
     dispatch(addToCart(cartItem));
+
+    // Toast popup trigger karein aur 3 second baad auto hide kar dein
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3500);
   };
 
   return (
     <>
       <Navbar />
-      <div className="bg-white text-gray-800 font-sans min-h-screen py-10 px-4">
+      <div className="bg-white text-gray-800 font-sans min-h-screen py-10 px-4 relative">
+        
+        {/* Success Popup / Toast Notification */}
+        <AnimatePresence>
+          {showToast && (
+            <motion.div
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.9 }}
+              className="fixed bottom-8 right-8 z-50 bg-gray-900 text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-gray-800"
+            >
+              <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                ✓
+              </div>
+              <div>
+                <p className="text-xs font-bold">
+                  {lang === "en" ? "Added to Cart Successfully!" : "सफलतापूर्वक कार्ट में जोड़ा गया!"}
+                </p>
+                <p className="text-[11px] text-gray-400 mt-0.5">{displayTitle} ({selectedCategory})</p>
+              </div>
+              <button
+                onClick={() => navigate("/checkout")}
+                className="ml-3 bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold px-3 py-2 rounded-xl transition cursor-pointer"
+              >
+                {lang === "en" ? "View Cart" : "कार्ट देखें"}
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10">
           <div className="text-xs text-gray-400 mb-6">
             Home / Services /{" "}
@@ -175,7 +211,6 @@ export default function Service() {
                       : "अपनी कार का प्रकार चुनें:"}
                   </span>
                   
-                  {/* Price display condition */}
                   {hasPrice ? (
                     <div className="text-right">
                       <span className="text-2xl font-extrabold text-green-600">
